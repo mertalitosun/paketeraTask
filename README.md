@@ -41,3 +41,4 @@ Bu proje, üç ana kullanıcı türü (Admin, Müşteri, Tedarikçi) için sipar
 | GET    | /admin/suppliers       | Sadece tedarikçileri listele                | Admin           |
 | GET    | /admin/product-types   | Ürün türlerini listele                      | Admin,customer          |
 | POST   | /admin/product-types   | Yeni ürün türü ekle                         | Admin           |
+| GET   | /admin/order-requests   | Talepleri Listele                       | Admin           |
