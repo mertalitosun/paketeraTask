@@ -9,7 +9,8 @@ router.get("/customers",authenticate,checkRole("admin"),adminController.getCusto
 router.get("/suppliers",authenticate,checkRole("admin"),adminController.getSuppliers);
 
 
-router.get("/product-types", authenticate, checkRole("admin"),adminController.getProductTypes);
+//product_types
+router.get("/product-types", authenticate, checkRole("admin", "customer"),adminController.getProductTypes);
 router.post("/product-types", authenticate, checkRole("admin"),adminController.postProductTypes);
 
 
