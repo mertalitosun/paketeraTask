@@ -14,4 +14,6 @@ router.get("/product-types", authenticate, checkRole("admin", "customer"),adminC
 router.post("/product-types", authenticate, checkRole("admin"),adminController.postProductTypes);
 
 
+router.get("/order-requests",authenticate,checkRole("admin"),adminController.getAllOrderRequests);
+
 module.exports = router;

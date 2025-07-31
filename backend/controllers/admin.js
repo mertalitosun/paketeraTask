@@ -74,3 +74,48 @@ exports.postProductTypes = (req,res) => {
         })
     })
 }
+
+exports.getAllOrderRequests = (req,res) => {
+    fs.readFile("./mockData/db.json","utf-8",(err,data)=>{
+        if(err){
+            return res.status(500).json({message:"Veri Okunamadı"});
+        }
+
+        const db = JSON.parse(data);
+
+        const result = db.order_requests.map((order)=>{
+            //Müşteri
+            const customer = db.users.find((user)=> user.id === order.customerId);
+
+            //items
+            const items = db.order_request_items.filter((item)=>item.orderRequestId === order.id)
+            .map((item)=>{
+                const productType = db.product_types.find((type)=> type.id === item.productTypeId)
+                return {
+                    productTypeName: productType ? productType.name : "İsim Yok",
+                    quantity: item.quantity
+                }
+            })
+
+            const interestedSuppliers = db.supplier_interests.filter((interest)=>interest.orderRequestId===order.id && interest.status ==="interested").map((interest)=>{
+                const supplier = db.users.find((user)=>user.id === interest.supplierId);
+                if(!supplier){
+                    return null
+                }
+
+                const nameParts = supplier.name.split(" ");
+                const maskedFirst = nameParts[0].slice(0,2) + "*".repeat(nameParts[0].length - 2);
+                const maskedLast = nameParts[1] ? nameParts[1].slice(0,2) + "*".repeat(nameParts[1].length - 2) : "";
+                return `${maskedFirst} + ${maskedLast}`;
+            }).filter(Boolean);
+            return {
+                id: order.id,
+                createdAt: order.createdAt,
+                customerName: customer ? customer.name : "isim yok",
+                items,
+                interestedSuppliers
+            }
+        })
+        res.status(200).json({message:"başarılı",orders:result});
+    })
+}
