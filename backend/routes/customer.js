@@ -9,6 +9,7 @@ router.post("/order-requests",authenticate,checkRole("customer"),customerControl
 
 // siparişleri listele
 router.get("/order-requests",authenticate,checkRole("customer"),customerController.getAllOrders);
+router.get("/order-request/:orderId",authenticate,checkRole("customer"),customerController.getOrderDetails);
 
 
 module.exports = router;

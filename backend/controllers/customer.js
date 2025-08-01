@@ -62,3 +62,56 @@ exports.getAllOrders = (req,res) => {
         return res.status(200).json({message:"Siparişler başarılı şekilde getirildi",orders})
     })
 }
+
+
+
+exports.getOrderDetails = (req, res) => {
+    const userId = req.user.id;
+    const orderId = parseInt(req.params.orderId);
+
+    fs.readFile("./mockData/db.json", "utf-8", (err, data) => {
+        if (err) {
+            return res.status(500).json({ message: "Veri okunamadı" });
+        }
+
+        const db = JSON.parse(data);
+
+        const order = db.order_requests.find(order => order.id === orderId && order.customerId === userId);
+        if (!order) {
+            return res.status(404).json({ message: "Sipariş bulunamadı" });
+        }
+
+        const items = db.order_request_items
+            .filter(item => item.orderRequestId === orderId)
+            .map(item => {
+                const productType = db.product_types.find(type => type.id === item.productTypeId);
+                return {
+                    productTypeName: productType ? productType.name : "isim yok",
+                    quantity: item.quantity
+                };
+            });
+
+        const interestedSuppliers = db.supplier_interests
+            .filter(interest => interest.orderRequestId === orderId && interest.status === "interested")
+            .map(interest => {
+                const supplier = db.users.find(user => user.id === interest.supplierId);
+                if (!supplier) return null;
+
+                const [first, last] = supplier.name.split(" ");
+                const maskedFirst = first.slice(0, 2) + "*".repeat(first.length - 2);
+                const maskedLast = last ? last.slice(0, 2) + "*".repeat(last.length - 2) : "";
+                return `${maskedFirst} ${maskedLast}`;
+            })
+            .filter(Boolean);
+
+        res.status(200).json({
+            message: "Veriler Getirildi",
+            order: {
+                id: order.id,
+                createdAt: order.createdAt,
+                items,
+                interestedSuppliers
+            }
+        });
+    });
+};
