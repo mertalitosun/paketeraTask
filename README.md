@@ -44,4 +44,4 @@ Bu proje, üç ana kullanıcı türü (Admin, Müşteri, Tedarikçi) için sipar
 | GET   | /admin/order-requests   | Talepleri Listele                       | Admin           |
 | GET   | /order-requests   | Talepleri listele                       | customer           |
 | POST   | /order-requests   | Talep oluştur                       | customer           |
-| GET   | /order-requests/orderId   | Taleplerin detayını görüntüle                       | customer           |
+| GET   | /order-request/orderId   | Taleplerin detayını görüntüle                       | customer           |
