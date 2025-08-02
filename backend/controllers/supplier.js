@@ -17,6 +17,7 @@ exports.getOrders = (req,res) => {
             res.status(200).json({message:"Veriler Başarılı Şekilde Getirildi.", orders});
         }
 
+        //filterelenmiş talepler
         const productTypeIdArray = productTypeIds.split(",").map(id=>parseInt(id)).filter(id=>!isNaN(id));
 
         const matchingOrderIds = new Set(
@@ -27,8 +28,7 @@ exports.getOrders = (req,res) => {
         return res.json({message:"Filterelenmiş veriler",filterOrders})
     })
 } 
-
-
+//talep detayları
 exports.getOrderDetails = (req, res) => {
   const userId = req.user.id;
   const orderId = parseInt(req.params.orderId);
@@ -41,7 +41,6 @@ exports.getOrderDetails = (req, res) => {
     const order = db.order_requests.find(o => o.id === orderId);
     if (!order) return res.status(404).json({ message: "Sipariş bulunamadı" });
 
-    // Sipariş ürün detayları
     const items = db.order_request_items
       .filter(item => item.orderRequestId === orderId)
       .map(item => {
@@ -52,7 +51,6 @@ exports.getOrderDetails = (req, res) => {
         };
       });
 
-    // Tedarikçinin bu siparişle ilgilenme durumu
     const interest = db.supplier_interests.find(
       si => si.orderRequestId === orderId && si.supplierId === userId
     );
@@ -67,3 +65,45 @@ exports.getOrderDetails = (req, res) => {
     });
   });
 };
+
+
+exports.setInterestStatus = (req,res) => {
+  const userId = req.user.id;
+  const orderId = parseInt(req.params.orderId);
+  const {status} = req.body;
+
+  if(!["interested","not_interested"].includes(status)){
+    return res.status(400).json({message:"Geçersiz Durum"});
+  }
+
+  fs.readFile("./mockData/db.json","utf-8",(err,data)=>{
+    if(err){
+      return res.status(500).json({message:"Veri Okunamadı"});
+    }
+
+    const db = JSON.parse(data);
+
+    const existingInterestIndex = db.supplier_interests.findIndex(interest => interest.orderRequestId === orderId && interest.supplierId);
+
+    if(existingInterestIndex !== -1){
+      db.supplier_interests[existingInterestIndex].status = status;
+    }else{
+      const newInterest = {
+        id: db.supplier_interests.length + 1,
+        orderRequestId: orderId,
+        supplierId: userId,
+        status
+      }
+      db.supplier_interests.push(newInterest);
+    }
+    fs.writeFile("./mockData/db.json",JSON.stringify(db,null,2),err=>{
+      if(err){
+        return res.status(500).json({message:"Veri Kaydedilmedi"});
+      }
+      res.json({
+        message:"Durum KAydedildi",
+        status
+      })
+    })
+  })
+}

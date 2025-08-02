@@ -125,6 +125,12 @@
       "orderRequestId": 2,
       "supplierId": 3,
       "status": "interested"
+    },
+    {
+      "id": null,
+      "orderRequestId": 3,
+      "supplierId": 3,
+      "status": "not_interested"
     }
   ]
 }
