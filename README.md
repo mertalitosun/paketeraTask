@@ -47,3 +47,4 @@ Bu proje, üç ana kullanıcı türü (Admin, Müşteri, Tedarikçi) için sipar
 | GET   | /order-request/orderId   | Taleplerin detayını görüntüle                       | Customer           |
 | GET   | /supplier/order-requests  | Talepleri Listele                   | Supplier           |
 | GET   | /supplier/order-request/orderId   | Taleplerin detayını görüntüle                      | Supplier           |
+| POST   | /supplier/order-request/orderId   | Tedarikçi ilgilenme durumu değiştir                 | Supplier           |
