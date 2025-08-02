@@ -39,9 +39,10 @@ Bu proje, üç ana kullanıcı türü (Admin, Müşteri, Tedarikçi) için sipar
 | GET    | /admin/users           | Tüm kullanıcıları listele                   | Admin           |
 | GET    | /admin/customers       | Sadece müşterileri listele                  | Admin           |
 | GET    | /admin/suppliers       | Sadece tedarikçileri listele                | Admin           |
-| GET    | /admin/product-types   | Ürün türlerini listele                      | Admin,customer          |
+| GET    | /admin/product-types   | Ürün türlerini listele                      | Admin,Customer          |
 | POST   | /admin/product-types   | Yeni ürün türü ekle                         | Admin           |
 | GET   | /admin/order-requests   | Talepleri Listele                       | Admin           |
-| GET   | /order-requests   | Talepleri listele                       | customer           |
-| POST   | /order-requests   | Talep oluştur                       | customer           |
-| GET   | /order-request/orderId   | Taleplerin detayını görüntüle                       | customer           |
+| GET   | /order-requests   | Talepleri listele                       | Customer           |
+| POST   | /order-requests   | Talep oluştur                       | Customer           |
+| GET   | /order-request/orderId   | Taleplerin detayını görüntüle                       | Customer           |
+| GET   | /supplier/order-requests  | Talepleri Listele                   | Supplier           |
