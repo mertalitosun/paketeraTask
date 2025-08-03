@@ -10,7 +10,7 @@ router.post("/order-requests",authenticate,checkRole("customer"),customerControl
 router.get("/product-types", authenticate, checkRole("customer"),customerController.getProductTypes);
 
 // siparişleri listele
-router.get("/order-requests",authenticate,checkRole("customer"),customerController.getAllOrders);
+router.get("/orders",authenticate,checkRole("customer"),customerController.getAllOrders);
 router.get("/order-request/:orderId",authenticate,checkRole("customer"),customerController.getOrderDetails);
 
 
