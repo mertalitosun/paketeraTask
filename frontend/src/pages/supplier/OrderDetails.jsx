@@ -32,6 +32,23 @@ function OrderDetail() {
     fetchOrderDetail();
   }, []);
 
+  const updateInterestStatus = async (newStatus) => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:4000/supplier/order-request/${id}`,
+        { status: newStatus },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setOrder({ ...order, interestStatus: newStatus });
+    } catch (err) {
+      setMessage("Durum güncellenemedi: " + err.message);
+    }
+  };
+
   if (message) return <p style={{ color: "red" }}>{message}</p>;
 
   if (!order) return <p>Yükleniyor...</p>;
@@ -55,6 +72,24 @@ function OrderDetail() {
           <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.interestStatus == "interested" ? "ilgileniyorum" : "ilgilenmiyorum"}</td>
         </tr>
       </tbody>
+      {/* ilgi butonu */}
+        <div style={{ marginBottom: 20 }}>
+            <strong>Bu taleple ilgileniyor musunuz?</strong><br />
+            <button
+                style={{ marginRight: 10 }}
+                onClick={() => updateInterestStatus("interested")}
+                disabled={order.interestStatus === "interested"}
+            >
+                ✅ İlgileniyorum
+            </button>
+            <button
+                onClick={() => updateInterestStatus("not_interested")}
+                disabled={order.interestStatus === "not_interested"}
+            >
+                ❎ İlgilenmiyorum
+            </button>
+        </div>
+
     </table>
   
     <h3>Ürünler</h3>
