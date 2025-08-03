@@ -1,33 +1,55 @@
 const fs = require("fs");
 
 // Talep listeler
-exports.getOrders = (req,res) => {
-    const {productTypeIds} = req.query;
-    fs.readFile("./mockData/db.json","utf-8",(err,data)=>{
-        if(err){
-            return res.status(500).json({message:"Veri Okunamadı"});
-        }
+exports.getOrders = (req, res) => {
+  const { productTypeIds } = req.query;
 
-        const db = JSON.parse(data);
+  fs.readFile("./mockData/db.json", "utf-8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Veri Okunamadı" });
+    }
 
-        //Tüm talepler listelenir
-        if(!productTypeIds){
-            const orders = db.order_requests;
+    const db = JSON.parse(data);
 
-            res.status(200).json({message:"Veriler Başarılı Şekilde Getirildi.", orders});
-        }
+    let filteredOrders = db.order_requests;
 
-        //filterelenmiş talepler
-        const productTypeIdArray = productTypeIds.split(",").map(id=>parseInt(id)).filter(id=>!isNaN(id));
+    if (productTypeIds) {
+      const productTypeIdArray = productTypeIds
+        .split(",")
+        .map((id) => parseInt(id))
+        .filter((id) => !isNaN(id));
 
-        const matchingOrderIds = new Set(
-            db.order_request_items.filter(item=>productTypeIdArray.includes(item.productTypeId)).map(item=>item.orderRequestId)
-        ) 
-        const filterOrders = db.order_requests.filter(order=>matchingOrderIds.has(order.id));
+      const matchingOrderIds = new Set(
+        db.order_request_items
+          .filter((item) => productTypeIdArray.includes(item.productTypeId))
+          .map((item) => item.orderRequestId)
+      );
 
-        return res.json({message:"Filterelenmiş veriler",filterOrders})
-    })
-} 
+      filteredOrders = db.order_requests.filter((order) =>
+        matchingOrderIds.has(order.id)
+      );
+    }
+
+    // Her order'ın içine o order'a ait ürünleri eklendi
+    const ordersWithItems = filteredOrders.map((order) => {
+      const items = db.order_request_items.filter(
+        (item) => item.orderRequestId === order.id
+      );
+      return {
+        ...order,
+        items,
+      };
+    });
+
+    return res.json({
+      message: productTypeIds
+        ? "Filtrelenmiş veriler"
+        : "Veriler Başarılı Şekilde Getirildi.",
+      orders: ordersWithItems,
+    });
+  });
+};
+
 //talep detayları
 exports.getOrderDetails = (req, res) => {
   const userId = req.user.id;
@@ -66,6 +88,7 @@ exports.getOrderDetails = (req, res) => {
   });
 };
 
+//ürün tipleri
 exports.getProductTypes = (req,res) => {
   fs.readFile("./mockData/db.json", "utf-8", (err, data) => {
       if (err) return res.status(500).json({ message: "Veri okunamadı" });
