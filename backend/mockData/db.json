@@ -37,114 +37,35 @@
     }
   ],
   "product_types": [
-    {
-      "id": 1,
-      "name": "Çiçek"
-    },
-    {
-      "id": 2,
-      "name": "Şekerleme"
-    },
-    {
-      "id": 3,
-      "name": "Mum"
-    },
-    {
-      "id": 4,
-      "name": "Balon"
-    },
-    {
-      "id": 5,
-      "name": "Takı"
-    },
-    {
-      "id": 6,
-      "name": "deneme"
-    },
-    {
-      "id": 7,
-      "name": "meşrubat"
-    }
+    { "id": 1, "name": "Çiçek" },
+    { "id": 2, "name": "Şekerleme" },
+    { "id": 3, "name": "Mum" },
+    { "id": 4, "name": "Balon" },
+    { "id": 5, "name": "Takı" },
+    { "id": 6, "name": "deneme" },
+    { "id": 7, "name": "meşrubat" }
   ],
   "order_requests": [
-    {
-      "id": 1,
-      "customerId": 2,
-      "createdAt": "2025-07-28T09:00:00Z"
-    },
-    {
-      "id": 2,
-      "customerId": 4,
-      "createdAt": "2025-07-29T11:30:00Z"
-    },
-    {
-      "id": 3,
-      "customerId": 2,
-      "createdAt": "2025-08-01T18:07:16.737Z"
-    },
-    {
-      "id": 4,
-      "customerId": 2,
-      "createdAt": "2025-08-03T20:15:16.812Z"
-    }
+    { "id": 1, "customerId": 2, "createdAt": "2025-07-28T09:00:00Z" },
+    { "id": 2, "customerId": 4, "createdAt": "2025-07-29T11:30:00Z" },
+    { "id": 3, "customerId": 2, "createdAt": "2025-08-01T18:07:16.737Z" }
   ],
   "order_request_items": [
-    {
-      "id": 1,
-      "orderRequestId": 1,
-      "productTypeId": 1,
-      "quantity": 5
-    },
-    {
-      "id": 2,
-      "orderRequestId": 1,
-      "productTypeId": 3,
-      "quantity": 2
-    },
-    {
-      "id": 3,
-      "orderRequestId": 2,
-      "productTypeId": 2,
-      "quantity": 10
-    },
-    {
-      "id": 4,
-      "orderRequestId": 3,
-      "productTypeId": 1,
-      "quantity": 5
-    },
-    {
-      "id": 5,
-      "orderRequestId": 3,
-      "productTypeId": 3,
-      "quantity": 2
-    },
-    {
-      "id": 6,
-      "orderRequestId": 4,
-      "productTypeId": 7,
-      "quantity": 15
-    }
+    { "id": 1, "orderRequestId": 1, "productTypeId": 1, "quantity": 5 },
+    { "id": 2, "orderRequestId": 1, "productTypeId": 3, "quantity": 2 },
+    { "id": 3, "orderRequestId": 2, "productTypeId": 2, "quantity": 10 },
+    { "id": 4, "orderRequestId": 3, "productTypeId": 1, "quantity": 5 },
+    { "id": 5, "orderRequestId": 3, "productTypeId": 3, "quantity": 2 }
   ],
   "supplier_interests": [
-    {
-      "id": 1,
-      "orderRequestId": 1,
-      "supplierId": 3,
-      "status": "interested"
-    },
+    { "id": 1, "orderRequestId": 1, "supplierId": 3, "status": "interested" },
     {
       "id": 2,
       "orderRequestId": 1,
       "supplierId": 5,
       "status": "not_interested"
     },
-    {
-      "id": 3,
-      "orderRequestId": 2,
-      "supplierId": 3,
-      "status": "interested"
-    },
+    { "id": 3, "orderRequestId": 2, "supplierId": 3, "status": "interested" },
     {
       "id": null,
       "orderRequestId": 3,
