@@ -59,65 +59,70 @@ function SupplierOrders() {
   };
 
   return (
-    <div style={{ maxWidth: 900, margin: "auto", padding: 20 }}>
-      <h2>Talepler</h2>
-
-      <div style={{ marginBottom: 20 }}>
-        <strong>Ürün Türlerine Göre Filtrele:</strong><br />
-        {productTypes.map((type) => (
-          <label key={type.id} style={{ marginRight: 10 }}>
-            <input
-              type="checkbox"
-              value={type.id}
-              checked={selectedTypes.includes(type.id)}
-              onChange={() => handleCheckboxChange(type.id)}
-            />
+    <div className="container" style={{ maxWidth: 900 }}>
+    <h2 className="my-4">Talepler</h2>
+  
+    <div className="mb-3">
+      <strong>Ürün Türlerine Göre Filtrele:</strong><br />
+      {productTypes.map((type) => (
+        <div key={type.id} className="form-check form-check-inline me-3">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id={`type-${type.id}`}
+            value={type.id}
+            checked={selectedTypes.includes(type.id)}
+            onChange={() => handleCheckboxChange(type.id)}
+          />
+          <label className="form-check-label" htmlFor={`type-${type.id}`}>
             {type.name}
           </label>
-        ))}
-        <button style={{ marginLeft: 15, padding: "4px 10px" }} onClick={fetchOrders}>
-          Filtrele
-        </button>
-      </div>
-
-      {message && <p style={{ color: "red" }}>{message}</p>}
-
-      
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
-        <thead>
-            <tr style={{ backgroundColor: "#f2f2f2" }}>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>Tarih</th>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürünler</th>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}></th>
-            </tr>
-        </thead>
-        <tbody>
-            {orders.map((order) => (
-            <tr key={order.id}>
-                <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
-                <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
-                <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                <ul style={{ margin: 0, paddingLeft: 15 }}>
-                    {order.items.map((item, index) => {
-                    const productType = productTypes.find(type => type.id === item.productTypeId);
-                    return (
-                        <li key={index}>
-                        {productType ? productType.name : "Bilinmeyen ürün"} - {item.quantity}
-                        </li>
-                    );
-                    })}
-                </ul>
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                <button onClick={() => navigate(`/supplier/orders/${order.id}`)}>Detay</button>
-                </td>
-            </tr>
-            ))}
-        </tbody>
-      </table>
-
+        </div>
+      ))}
+      <button className="btn btn-primary ms-3" onClick={fetchOrders}>
+        Filtrele
+      </button>
     </div>
+  
+    {message && <p className="text-danger">{message}</p>}
+  
+    <table className="table table-bordered table-striped mt-3">
+      <thead className="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Tarih</th>
+          <th>Ürünler</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.id}>
+            <td>{order.id}</td>
+            <td>{new Date(order.createdAt).toLocaleString()}</td>
+            <td>
+              <ul className="mb-0 ps-3">
+                {order.items.map((item, index) => {
+                  const productType = productTypes.find(type => type.id === item.productTypeId);
+                  return (
+                    <li key={index}>
+                      {productType ? productType.name : "Bilinmeyen ürün"} - {item.quantity}
+                    </li>
+                  );
+                })}
+              </ul>
+            </td>
+            <td>
+              <button className="btn btn-secondary btn-sm" onClick={() => navigate(`/supplier/orders/${order.id}`)}>
+                Detay
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  
   );
 }
 export default SupplierOrders;

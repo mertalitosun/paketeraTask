@@ -54,62 +54,64 @@ function OrderDetail() {
   if (!order) return <p>Yükleniyor...</p>;
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-    <h2>Sipariş Detayı</h2>
+    <div className="container" style={{ maxWidth: 800 }}>
+    <h2 className="my-4">Sipariş Detayı</h2>
   
-    <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30 }}>
-      <thead>
-        <tr style={{ backgroundColor: "#f2f2f2" }}>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Sipariş ID</th>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Oluşturulma Tarihi</th>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}></th>
+    <table className="table table-bordered mb-4">
+      <thead className="table-light">
+        <tr>
+          <th>Sipariş ID</th>
+          <th>Oluşturulma Tarihi</th>
+          <th>İlgi Durumu</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
-          <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
-          <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.interestStatus == "interested" ? "ilgileniyorum" : "ilgilenmiyorum"}</td>
+          <td>{order.id}</td>
+          <td>{new Date(order.createdAt).toLocaleString()}</td>
+          <td>{order.interestStatus === "interested" ? "İlgileniyorum" : "İlgilenmiyorum"}</td>
         </tr>
       </tbody>
-      {/* ilgi butonu */}
-        <div style={{ marginBottom: 20 }}>
-            <strong>Bu taleple ilgileniyor musunuz?</strong><br />
-            <button
-                style={{ marginRight: 10 }}
-                onClick={() => updateInterestStatus("interested")}
-                disabled={order.interestStatus === "interested"}
-            >
-                ✅ İlgileniyorum
-            </button>
-            <button
-                onClick={() => updateInterestStatus("not_interested")}
-                disabled={order.interestStatus === "not_interested"}
-            >
-                ❎ İlgilenmiyorum
-            </button>
-        </div>
-
     </table>
   
+    {/* İlgi butonları */}
+    <div className="mb-4">
+      <strong>Bu taleple ilgileniyor musunuz?</strong><br />
+      <button
+        className="btn btn-success me-2"
+        onClick={() => updateInterestStatus("interested")}
+        disabled={order.interestStatus === "interested"}
+      >
+        ✅ İlgileniyorum
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={() => updateInterestStatus("not_interested")}
+        disabled={order.interestStatus === "not_interested"}
+      >
+        ❎ İlgilenmiyorum
+      </button>
+    </div>
+  
     <h3>Ürünler</h3>
-    <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30 }}>
-      <thead>
-        <tr style={{ backgroundColor: "#f2f2f2" }}>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürün Türü</th>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Adet</th>
+    <table className="table table-bordered mb-5">
+      <thead className="table-light">
+        <tr>
+          <th>Ürün Türü</th>
+          <th>Adet</th>
         </tr>
       </thead>
       <tbody>
         {order.items.map((item, index) => (
           <tr key={index}>
-            <td style={{ border: "1px solid #ddd", padding: 10 }}>{item.productTypeName}</td>
-            <td style={{ border: "1px solid #ddd", padding: 10 }}>{item.quantity}</td>
+            <td>{item.productTypeName}</td>
+            <td>{item.quantity}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
+  
   
   );
 }
