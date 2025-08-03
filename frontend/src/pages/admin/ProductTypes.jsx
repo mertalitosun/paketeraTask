@@ -59,41 +59,49 @@ function ProductTypes() {
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-      <h2>Ürün Türleri</h2>
-
-      <form onSubmit={handleAddType} style={{ marginBottom: 20 }}>
+    <div className="container py-4" style={{ maxWidth: 800 }}>
+    <h2 className="mb-4">Ürün Türleri</h2>
+  
+    <form className="row g-2 align-items-center mb-4" onSubmit={handleAddType}>
+      <div className="col-sm-8">
         <input
           type="text"
+          className="form-control"
           value={newType}
           onChange={(e) => setNewType(e.target.value)}
           placeholder="Yeni ürün türü"
-          style={{ padding: 8, width: "70%", marginRight: 10 }}
+          required
         />
-        <button type="submit" style={{ padding: 8 }}>
+      </div>
+      <div className="col-sm-4">
+        <button type="submit" className="btn btn-primary w-100">
           Ekle
         </button>
-      </form>
-
-      {message && <p style={{ marginTop: 10 }}>{message}</p>}
-
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
-        <thead>
-          <tr style={{ backgroundColor: "#f2f2f2" }}>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürün Türü</th>
+      </div>
+    </form>
+  
+    {message && <div className="alert alert-info">{message}</div>}
+  
+    <div className="table-responsive">
+      <table className="table table-bordered table-hover align-middle">
+        <thead className="table-light">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ürün Türü</th>
           </tr>
         </thead>
         <tbody>
           {productTypes.map((type) => (
             <tr key={type.id}>
-              <td style={{ border: "1px solid #ddd", padding: 10 }}>{type.id}</td>
-              <td style={{ border: "1px solid #ddd", padding: 10 }}>{type.name}</td>
+              <td>{type.id}</td>
+              <td>{type.name}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+  </div>
+  
   );
 }
 

@@ -10,13 +10,13 @@ function AdminDashboard(){
     return(
         <div>
             <h1>Admin Panel</h1>
-            <nav>
-                <ul>
-                    <li><Link to="product-types">Ürün Türleri</Link></li>
-                    <li><Link to="users">Kullanıcılar</Link></li>
-                    <li><Link to="customers">Müşteriler</Link></li>
-                    <li><Link to="suppliers">Tedarikçiler</Link></li>
-                    <li><Link to="orders">Talepler</Link></li>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item"><Link className="nav-link" to="product-types">Ürün Türleri</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="users">Kullanıcılar</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="customers">Müşteriler</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="suppliers">Tedarikçiler</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="orders">Talepler</Link></li>
                 </ul>
             </nav>
 

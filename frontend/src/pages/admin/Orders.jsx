@@ -32,47 +32,48 @@ function Orders() {
 
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-      <h2>Talepler</h2>
+    <div className="container py-4" style={{ maxWidth: 800 }}>
+  <h2 className="mb-4">Talepler</h2>
+  {message && <div className="alert alert-info">{message}</div>}
 
-      {message && <p style={{ marginTop: 10 }}>{message}</p>}
-
-        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
-            <thead>
-                <tr style={{ backgroundColor: "#f2f2f2" }}>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>ID</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>Tarih</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>Müşteri Adı</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürünler</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>İlgilenen Tedarikçiler</th>
-                </tr>
-            </thead>
-            <tbody>
-                {orders.map((order) => (
-                <tr key={order.id}>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.customerName}</td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                    <ul style={{ margin: 0, paddingLeft: 15 }}>
-                        {order.items.map((item, index) => (
-                        <li key={index}>
-                            {item.productTypeName} - {item.quantity}
-                        </li>
-                        ))}
-                    </ul>
-                    </td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                    {order.interestedSuppliers.length > 0 
-                        ? order.interestedSuppliers.join(", ")
-                        : "Yok"}
-                    </td>
-                </tr>
+  <div className="table-responsive">
+    <table className="table table-bordered table-hover align-middle">
+      <thead className="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Tarih</th>
+          <th>Müşteri Adı</th>
+          <th>Ürünler</th>
+          <th>İlgilenen Tedarikçiler</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.id}>
+            <td>{order.id}</td>
+            <td>{new Date(order.createdAt).toLocaleString()}</td>
+            <td>{order.customerName}</td>
+            <td>
+              <ul className="mb-0 ps-3">
+                {order.items.map((item, index) => (
+                  <li key={index}>
+                    {item.productTypeName} - {item.quantity}
+                  </li>
                 ))}
-            </tbody>
-        </table>
+              </ul>
+            </td>
+            <td>
+              {order.interestedSuppliers.length > 0
+                ? order.interestedSuppliers.join(", ")
+                : "Yok"}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    </div>
   );
 }
 

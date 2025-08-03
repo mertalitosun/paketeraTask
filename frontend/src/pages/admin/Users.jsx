@@ -24,11 +24,12 @@ function Users() {
    },[])
 
    return (
-    <div style={{ padding: "20px" }}>
-      <h2>Kullanıcılar</h2>
-      {message && <p>{message}</p>}
-      <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
+    <div className="container py-4">
+    <h2 className="mb-4">Kullanıcılar</h2>
+    {message && <div className="alert alert-info">{message}</div>}
+    <div className="table-responsive">
+      <table className="table table-bordered table-hover align-middle">
+        <thead className="table-light">
           <tr>
             <th>#</th>
             <th>İsim</th>
@@ -48,6 +49,8 @@ function Users() {
         </tbody>
       </table>
     </div>
+  </div>
+  
   );
 }
 

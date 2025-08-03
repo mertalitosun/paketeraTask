@@ -24,15 +24,18 @@ function Customers() {
    },[])
 
    return (
-    <div style={{ padding: "20px" }}>
-      <h2>Müşteriler</h2>
-      {message && <p>{message}</p>}
-      <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
+    <div className="container py-4">
+    <h2 className="mb-4">Müşteriler</h2>
+  
+    {message && <div className="alert alert-warning">{message}</div>}
+  
+    <div className="table-responsive">
+      <table className="table table-bordered table-hover align-middle">
+        <thead className="table-dark">
           <tr>
-            <th>#</th>
-            <th>İsim</th>
-            <th>Email</th>
+            <th scope="col">#</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Email</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +49,8 @@ function Customers() {
         </tbody>
       </table>
     </div>
+  </div>
+  
   );
 }
 
