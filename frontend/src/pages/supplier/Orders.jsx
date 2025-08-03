@@ -110,7 +110,7 @@ function SupplierOrders() {
                 </ul>
                 </td>
                 <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                <button onClick={() => navigate(`/customer/orders/${order.id}`)}>Detay</button>
+                <button onClick={() => navigate(`/supplier/orders/${order.id}`)}>Detay</button>
                 </td>
             </tr>
             ))}

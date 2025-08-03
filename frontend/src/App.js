@@ -17,10 +17,12 @@ import Orders from './pages/admin/Orders';
 import CustomerProductTypes from "./pages/customer/ProductTypes";
 import CreateOrder from "./pages/customer/CreateOrder";
 import CustomerOrders from './pages/customer/Orders';
-import OrderDetails from './pages/customer/OrderDetails';
+import CustomerOrderDetails from './pages/customer/OrderDetails';
 
 //Supplier
 import SupplierOrders from './pages/supplier/Orders';
+import SupplierOrderDetails from './pages/supplier/OrderDetails';
+
 
 function App() {
   return (
@@ -38,10 +40,11 @@ function App() {
         <Route path="/customer/product-types" element={<CustomerProductTypes />} />
         <Route path="/customer/order-requests" element={<CreateOrder/>} />
         <Route path="/customer/orders" element={<CustomerOrders/>} />
-        <Route path="/customer/orders/:id" element={<OrderDetails/>} />
+        <Route path="/customer/orders/:id" element={<CustomerOrderDetails/>} />
         
         <Route path="/supplier" element={<SupplierDashboard />} />
         <Route path="/supplier/orders" element={<SupplierOrders />} />
+        <Route path="/supplier/orders/:id" element={<SupplierOrderDetails/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
