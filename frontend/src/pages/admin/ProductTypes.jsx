@@ -1,5 +1,3 @@
-// src/pages/Admin/ProductTypes.jsx
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -10,7 +8,6 @@ function ProductTypes() {
 
   const token = localStorage.getItem("token");
 
-  // Ürün türlerini API'den çek
   const fetchProductTypes = async () => {
     try {
       const res = await axios.get("http://localhost:4000/admin/product-types", {
@@ -55,7 +52,6 @@ function ProductTypes() {
   return (
     <div style={{ maxWidth: 600, margin: "auto", padding: 20 }}>
       <h2>Ürün Türleri</h2>
-
       <form onSubmit={handleAddType}>
         <input
           type="text"
