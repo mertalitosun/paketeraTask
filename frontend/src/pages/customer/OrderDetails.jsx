@@ -37,62 +37,63 @@ function OrderDetail() {
   if (!order) return <p>Yükleniyor...</p>;
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-    <h2>Sipariş Detayı</h2>
-  
-    <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30 }}>
-      <thead>
-        <tr style={{ backgroundColor: "#f2f2f2" }}>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Sipariş ID</th>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Oluşturulma Tarihi</th>
+    <div className="container" style={{ maxWidth: 800 }}>
+  <h2 className="my-4">Sipariş Detayı</h2>
+
+  <table className="table table-bordered mb-4">
+    <thead className="table-light">
+      <tr>
+        <th>Sipariş ID</th>
+        <th>Oluşturulma Tarihi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{order.id}</td>
+        <td>{new Date(order.createdAt).toLocaleString()}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Ürünler</h3>
+  <table className="table table-bordered mb-4">
+    <thead className="table-light">
+      <tr>
+        <th>Ürün Türü</th>
+        <th>Adet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {order.items.map((item, index) => (
+        <tr key={index}>
+          <td>{item.productTypeName}</td>
+          <td>{item.quantity}</td>
         </tr>
-      </thead>
-      <tbody>
+      ))}
+    </tbody>
+  </table>
+
+  <h3>İlgilenen Tedarikçiler</h3>
+  {order.interestedSuppliers.length > 0 ? (
+    <table className="table table-bordered">
+      <thead className="table-light">
         <tr>
-          <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
-          <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <h3>Ürünler</h3>
-    <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 30 }}>
-      <thead>
-        <tr style={{ backgroundColor: "#f2f2f2" }}>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürün Türü</th>
-          <th style={{ border: "1px solid #ddd", padding: 10 }}>Adet</th>
+          <th>Tedarikçi Adı</th>
         </tr>
       </thead>
       <tbody>
-        {order.items.map((item, index) => (
-          <tr key={index}>
-            <td style={{ border: "1px solid #ddd", padding: 10 }}>{item.productTypeName}</td>
-            <td style={{ border: "1px solid #ddd", padding: 10 }}>{item.quantity}</td>
+        {order.interestedSuppliers.map((supplier, i) => (
+          <tr key={i}>
+            <td>{supplier}</td>
           </tr>
         ))}
       </tbody>
     </table>
-  
-    <h3>İlgilenen Tedarikçiler</h3>
-    {order.interestedSuppliers.length > 0 ? (
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr style={{ backgroundColor: "#f2f2f2" }}>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>Tedarikçi Adı</th>
-          </tr>
-        </thead>
-        <tbody>
-          {order.interestedSuppliers.map((supplier, i) => (
-            <tr key={i}>
-              <td style={{ border: "1px solid #ddd", padding: 10 }}>{supplier}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    ) : (
-      <p>Henüz ilgilenen tedarikçi yok.</p>
-    )}
-  </div>
+  ) : (
+    <p>Henüz ilgilenen tedarikçi yok.</p>
+  )}
+</div>
+
   
   );
 }

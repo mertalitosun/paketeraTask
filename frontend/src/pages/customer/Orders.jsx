@@ -32,33 +32,38 @@ function Orders() {
 
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-      <h2>Talepler</h2>
+    <div className="container" style={{ maxWidth: 800 }}>
+  <h2 className="my-4">Talepler</h2>
 
-      {message && <p style={{ marginTop: 10 }}>{message}</p>}
+  {message && <p className="text-danger my-2">{message}</p>}
 
-        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
-            <thead>
-                <tr style={{ backgroundColor: "#f2f2f2" }}>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>ID</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}>Tarih</th>
-                <th style={{ border: "1px solid #ddd", padding: 10 }}></th>
-                </tr>
-            </thead>
-            <tbody>
-                {orders.map((order) => (
-                <tr key={order.id}>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
-                    <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                        <button onClick={() => navigate(`/customer/orders/${order.id}`)}>Detay</button>
-                    </td>
-                </tr>
-                ))}
-            </tbody>
-        </table>
+  <table className="table table-bordered table-hover mt-3">
+    <thead className="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Tarih</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {orders.map((order) => (
+        <tr key={order.id}>
+          <td>{order.id}</td>
+          <td>{new Date(order.createdAt).toLocaleString()}</td>
+          <td>
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => navigate(`/customer/orders/${order.id}`)}
+            >
+              Detay
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-    </div>
   );
 }
 

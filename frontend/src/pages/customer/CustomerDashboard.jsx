@@ -7,11 +7,11 @@ function CustomerDashboard(){
     return(
         <div>
             <h1>Müşteri Panel</h1>
-        <nav>
-                <ul>
-                    <li><Link to="product-types">Ürün Türleri</Link></li>
-                    <li><Link to="order-requests">Sipariş Oluştur</Link></li>
-                    <li><Link to="orders">Siparişlerim</Link></li>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li  className="nav-item"><Link className="nav-link" to="product-types">Ürün Türleri</Link></li>
+                    <li  className="nav-item"><Link className="nav-link" to="order-requests">Sipariş Oluştur</Link></li>
+                    <li  className="nav-item"><Link className="nav-link" to="orders">Siparişlerim</Link></li>
                 </ul>
             </nav>
 

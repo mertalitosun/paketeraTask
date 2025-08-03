@@ -27,28 +27,29 @@ function ProductTypes() {
   
 
   return (
-    <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
-      <h2>Ürün Türleri</h2>
+    <div className="container my-4">
+  <h2>Ürün Türleri</h2>
 
-      {message && <p style={{ marginTop: 10 }}>{message}</p>}
+  {message && <p className="mt-3 text-danger">{message}</p>}
 
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}>
-        <thead>
-          <tr style={{ backgroundColor: "#f2f2f2" }}>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>ID</th>
-            <th style={{ border: "1px solid #ddd", padding: 10 }}>Ürün Türü</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productTypes.map((type) => (
-            <tr key={type.id}>
-              <td style={{ border: "1px solid #ddd", padding: 10 }}>{type.id}</td>
-              <td style={{ border: "1px solid #ddd", padding: 10 }}>{type.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  <table className="table table-bordered table-striped mt-4">
+    <thead className="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Ürün Türü</th>
+      </tr>
+    </thead>
+    <tbody>
+      {productTypes.map((type) => (
+        <tr key={type.id}>
+          <td>{type.id}</td>
+          <td>{type.name}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
   );
 }
 

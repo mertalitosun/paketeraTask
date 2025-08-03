@@ -75,29 +75,34 @@ function CreateOrder() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "auto", padding: 20 }}>
-      <h2>Sipariş Talebi Oluştur</h2>
+    <div className="container" style={{ maxWidth: 600 }}>
+  <h2 className="my-4">Sipariş Talebi Oluştur</h2>
 
-      <form onSubmit={formSumbit}>
-        {productTypes.map((type) => (
-          <div key={type.id} style={{ marginBottom: 10 }}>
-            <label>{type.name}:</label>
-            <input
-              type="number"
-              min="0"
-              value={quantities[type.id] || 0}
-              onChange={(e) => quantityChange(type.id, e.target.value)}
-              style={{ marginLeft: 10, padding: 5, width: 60 }}
-            />
-          </div>
-        ))}
-        <button type="submit" style={{ padding: 10, marginTop: 10 }}>
-          Siparişi Gönder
-        </button>
-      </form>
+  <form onSubmit={formSumbit}>
+    {productTypes.map((type) => (
+      <div className="mb-3 row align-items-center" key={type.id}>
+        <label className="col-sm-8 col-form-label">{type.name}:</label>
+        <div className="col-sm-4">
+          <input
+            type="number"
+            min="0"
+            value={quantities[type.id] || 0}
+            onChange={(e) => quantityChange(type.id, e.target.value)}
+            className="form-control"
+            style={{ maxWidth: 100 }}
+          />
+        </div>
+      </div>
+    ))}
 
-      {message && <p style={{ marginTop: 20 }}>{message}</p>}
-    </div>
+    <button type="submit" className="btn btn-primary mt-3">
+      Siparişi Gönder
+    </button>
+  </form>
+
+  {message && <p className="mt-4 text-danger">{message}</p>}
+</div>
+
   );
 }
 
