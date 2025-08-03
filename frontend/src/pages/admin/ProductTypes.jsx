@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 function ProductTypes() {
@@ -7,6 +9,7 @@ function ProductTypes() {
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const fetchProductTypes = async () => {
     try {
@@ -15,9 +18,15 @@ function ProductTypes() {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setProductTypes(res.data);
     } catch (err) {
-      setMessage("Ürün türleri alınamadı: " + err.message);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("token"); 
+        navigate("/login"); 
+      } else {
+        setMessage("Ürün türleri alınamadı: " + err.message);
+      }
     }
   };
 
