@@ -106,7 +106,7 @@ exports.getAllOrderRequests = (req,res) => {
                 const nameParts = supplier.name.split(" ");
                 const maskedFirst = nameParts[0].slice(0,2) + "*".repeat(nameParts[0].length - 2);
                 const maskedLast = nameParts[1] ? nameParts[1].slice(0,2) + "*".repeat(nameParts[1].length - 2) : "";
-                return `${maskedFirst} + ${maskedLast}`;
+                return `${maskedFirst}  ${maskedLast}`;
             }).filter(Boolean);
             return {
                 id: order.id,

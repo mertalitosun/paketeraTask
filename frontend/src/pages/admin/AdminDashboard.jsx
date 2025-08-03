@@ -1,6 +1,10 @@
 import React from "react";
 import {Link,Routes,Route} from "react-router-dom";
 import ProductTypes from "./ProductTypes";
+import Users from "./Users";
+import Suppliers from "./Suppliers";
+import Customers from "./Customers";
+import Orders from "./Orders";
 
 function AdminDashboard(){
     return(
@@ -9,15 +13,19 @@ function AdminDashboard(){
             <nav>
                 <ul>
                     <li><Link to="product-types">Ürün Türleri</Link></li>
-                    <li><Link to="users">Müşteriler</Link></li>
+                    <li><Link to="users">Kullanıcılar</Link></li>
+                    <li><Link to="customers">Müşteriler</Link></li>
                     <li><Link to="suppliers">Tedarikçiler</Link></li>
+                    <li><Link to="orders">Talepler</Link></li>
                 </ul>
             </nav>
 
             <Routes>
                 <Route path="product-types" element={<ProductTypes/>}></Route>
-                <Route path="users" element={<ProductTypes/>}></Route>
-                <Route path="suppliers" element={<ProductTypes/>}></Route>
+                <Route path="users" element={<Users/>}></Route>
+                <Route path="suppliers" element={<Suppliers/>}></Route>
+                <Route path="customers" element={<Customers/>}></Route>
+                <Route path="orders" element={<Orders/>}></Route>
             </Routes>
         </div>
     )
