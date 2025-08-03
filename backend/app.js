@@ -16,7 +16,7 @@ const supplierRoutes = require("./routes/supplier");
 app.use(authRoutes);
 app.use("/admin",adminRoutes);
 app.use("/supplier",supplierRoutes);
-app.use(customerRoutes);
+app.use("/customer",customerRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
