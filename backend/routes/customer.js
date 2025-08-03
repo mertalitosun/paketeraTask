@@ -7,7 +7,7 @@ const {checkRole, authenticate} = require("../middlewares/auth");
 // sipariş oluştur
 router.post("/order-requests",authenticate,checkRole("customer"),customerController.createOrderRequest);
 
-router.get("/product-types", authenticate, checkRole("customer"),adminController.getProductTypes);
+router.get("/product-types", authenticate, checkRole("customer"),customerController.getProductTypes);
 
 // siparişleri listele
 router.get("/order-requests",authenticate,checkRole("customer"),customerController.getAllOrders);
