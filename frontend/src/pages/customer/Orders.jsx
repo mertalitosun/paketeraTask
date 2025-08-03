@@ -51,7 +51,7 @@ function Orders() {
                     <td style={{ border: "1px solid #ddd", padding: 10 }}>{order.id}</td>
                     <td style={{ border: "1px solid #ddd", padding: 10 }}>{new Date(order.createdAt).toLocaleString()}</td>
                     <td style={{ border: "1px solid #ddd", padding: 10 }}>
-                        <button onClick={() => navigate(`/customer/order-request/${order.id}`)}>Detay</button>
+                        <button onClick={() => navigate(`/customer/orders/${order.id}`)}>Detay</button>
                     </td>
                 </tr>
                 ))}
