@@ -34,6 +34,7 @@ function OrderDetail() {
 
   if (message) return <p style={{ color: "red" }}>{message}</p>;
 
+  if (!order) return <p>Yükleniyor...</p>;
 
   return (
     <div style={{ maxWidth: 800, margin: "auto", padding: 20 }}>
