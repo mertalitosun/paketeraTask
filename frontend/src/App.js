@@ -19,6 +19,9 @@ import CreateOrder from "./pages/customer/CreateOrder";
 import CustomerOrders from './pages/customer/Orders';
 import OrderDetails from './pages/customer/OrderDetails';
 
+//Supplier
+import SupplierOrders from './pages/supplier/Orders';
+
 function App() {
   return (
     <Router>
@@ -30,11 +33,13 @@ function App() {
         <Route path="/admin/suppliers" element={<Suppliers />} />
         <Route path="/admin/customers" element={<Customers />} />
         <Route path="/admin/orders" element={<Orders />} />
+
         <Route path="/customer" element={<CustomerDashboard />} />
         <Route path="/customer/product-types" element={<CustomerProductTypes />} />
         <Route path="/customer/order-requests" element={<CreateOrder/>} />
         <Route path="/customer/orders" element={<CustomerOrders/>} />
-        <Route path="order-request/:id" element={<OrderDetails/>} />
+        <Route path="/customer/order-request/:id" element={<OrderDetails/>} />
+        
         <Route path="/supplier" element={<SupplierDashboard />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
