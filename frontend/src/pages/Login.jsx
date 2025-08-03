@@ -16,16 +16,13 @@ function Login() {
       const res = await axios.post("http://localhost:4000/login", { email, password });
       const token = res.data.token;
 
-      // Token'ı localStorage'a kaydet
       localStorage.setItem("token", token);
 
-      // Token'dan rolü çıkar
       const decoded = jwtDecode(token);
       const role = decoded.role;
 
       setMessage("Giriş başarılı!");
 
-      // Role göre yönlendir
       if (role === "admin") {
         navigate("/admin");
       } else if (role === "customer") {
@@ -42,32 +39,32 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "auto", padding: 20 }}>
-      <h2>Giriş Yap</h2>
+    <div className="container mt-5" style={{ maxWidth: 400 }}>
+      <h2 className="mb-4">Giriş Yap</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label><br />
+        <div className="mb-3">
+          <label className="form-label">Email:</label>
           <input
             type="email"
+            className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ width: "100%", padding: 8, marginBottom: 10 }}
           />
         </div>
-        <div>
-          <label>Şifre:</label><br />
+        <div className="mb-3">
+          <label className="form-label">Şifre:</label>
           <input
             type="password"
+            className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: "100%", padding: 8, marginBottom: 10 }}
           />
         </div>
-        <button type="submit" style={{ padding: 10, width: "100%" }}>Giriş Yap</button>
+        <button type="submit" className="btn btn-primary w-100">Giriş Yap</button>
       </form>
-      {message && <p style={{ marginTop: 10 }}>{message}</p>}
+      {message && <div className="alert alert-info mt-3">{message}</div>}
     </div>
   );
 }
