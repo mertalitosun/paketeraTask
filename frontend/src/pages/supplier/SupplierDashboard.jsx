@@ -2,10 +2,10 @@ import React from "react";
 import {Link,Routes,Route} from "react-router-dom";
 import Orders from "./Orders";
 
-function AdminDashboard(){
+function SupplierDashboard(){
     return(
         <div>
-            <h1>Admin Panel</h1>
+            <h1>Tedarikçi Panel</h1>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li  className="nav-item"><Link className="nav-link" to="orders">Talep Listesi</Link></li>
@@ -19,4 +19,4 @@ function AdminDashboard(){
     )
 }
 
-export default AdminDashboard;
+export default SupplierDashboard;
