@@ -66,6 +66,14 @@ exports.getOrderDetails = (req, res) => {
   });
 };
 
+exports.getProductTypes = (req,res) => {
+  fs.readFile("./mockData/db.json", "utf-8", (err, data) => {
+      if (err) return res.status(500).json({ message: "Veri okunamadı" });
+  
+      const db = JSON.parse(data);
+      res.json(db.product_types);
+    });
+}
 
 exports.setInterestStatus = (req,res) => {
   const userId = req.user.id;
