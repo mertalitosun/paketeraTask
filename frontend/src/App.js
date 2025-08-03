@@ -16,6 +16,8 @@ import Orders from './pages/admin/Orders';
 // customer
 import CustomerProductTypes from "./pages/customer/ProductTypes";
 import CreateOrder from "./pages/customer/CreateOrder";
+import CustomerOrders from './pages/customer/Orders';
+import OrderDetails from './pages/customer/OrderDetails';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/customer" element={<CustomerDashboard />} />
         <Route path="/customer/product-types" element={<CustomerProductTypes />} />
         <Route path="/customer/order-requests" element={<CreateOrder/>} />
+        <Route path="/customer/orders" element={<CustomerOrders/>} />
+        <Route path="order-request/:id" element={<OrderDetails/>} />
         <Route path="/supplier" element={<SupplierDashboard />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
