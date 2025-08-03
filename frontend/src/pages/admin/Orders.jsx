@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Orders() {
@@ -6,7 +7,7 @@ function Orders() {
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("token");
-
+  const navigate = useNavigate();
   const getOrders = async () => {
     try {
       const res = await axios.get("http://localhost:4000/admin/order-requests", {
@@ -16,7 +17,12 @@ function Orders() {
       });
       setOrders(res.data.orders);
     } catch (err) {
-      setMessage("Ürün türleri alınamadı: " + err.message);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("token"); 
+        navigate("/login"); 
+      } else {
+        setMessage("Ürün türleri alınamadı: " + err.message);
+      }
     }
   };
 

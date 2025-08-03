@@ -15,6 +15,7 @@ import Orders from './pages/admin/Orders';
 
 // customer
 import CustomerProductTypes from "./pages/customer/ProductTypes";
+import CreateOrder from "./pages/customer/CreateOrder";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/admin/orders" element={<Orders />} />
         <Route path="/customer" element={<CustomerDashboard />} />
         <Route path="/customer/product-types" element={<CustomerProductTypes />} />
+        <Route path="/customer/order-requests" element={<CreateOrder/>} />
         <Route path="/supplier" element={<SupplierDashboard />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
