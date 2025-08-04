@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/login", { email, password });
+      const res = await axios.post(":4000/login", { email, password });
       const token = res.data.token;
 
       localStorage.setItem("token", token);
