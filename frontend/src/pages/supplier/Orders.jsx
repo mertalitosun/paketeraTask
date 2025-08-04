@@ -12,7 +12,7 @@ function SupplierOrders() {
   // Ürün türlerini çek
   const fetchProductTypes = async () => {
     try {
-      const res = await axios.get("/supplier/product-types", {
+      const res = await axios.get("http://148.230.107.226:4000/supplier/product-types", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,7 +25,7 @@ function SupplierOrders() {
 
   const fetchOrders = async () => {
     try {
-      let url = "/supplier/order-requests";
+      let url = "http://148.230.107.226:4000/supplier/order-requests";
   
       if (selectedTypes.length > 0) {
         const query = selectedTypes.join(",");

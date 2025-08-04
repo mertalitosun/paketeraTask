@@ -12,7 +12,7 @@ function OrderDetail() {
 
   const fetchOrderDetail = async () => {
     try {
-      const res = await axios.get(`/customer/order-request/${id}`, {
+      const res = await axios.get(`http://148.230.107.226:4000/customer/order-request/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -9,7 +9,7 @@ function ProductTypes() {
 
   const fetchProductTypes = async () => {
     try {
-      const res = await axios.get("/customer/product-types", {
+      const res = await axios.get("http://148.230.107.226:4000/customer/product-types", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -12,7 +12,7 @@ function OrderDetail() {
 
   const fetchOrderDetail = async () => {
     try {
-      const res = await axios.get(`/supplier/order-request/${id}`, {
+      const res = await axios.get(`http://148.230.107.226:4000/supplier/order-request/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -35,7 +35,7 @@ function OrderDetail() {
   const updateInterestStatus = async (newStatus) => {
     try {
       const res = await axios.patch(
-        `/supplier/order-request/${id}`,
+        `http://148.230.107.226:4000/supplier/order-request/${id}`,
         { status: newStatus },
         {
           headers: {

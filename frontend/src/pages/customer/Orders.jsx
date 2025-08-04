@@ -10,7 +10,7 @@ function Orders() {
   const navigate = useNavigate();
   const getOrders = async () => {
     try {
-      const res = await axios.get("/customer/orders", {
+      const res = await axios.get("http://148.230.107.226:4000/customer/orders", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
