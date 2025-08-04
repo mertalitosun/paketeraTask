@@ -4,35 +4,35 @@
       "id": 1,
       "name": "Emir Yılmaz",
       "email": "admin@mail.com",
-      "password": "1234",
+      "password": "123456",
       "role": "admin"
     },
     {
       "id": 2,
       "name": "Berk Kaya",
       "email": "customer@mail.com",
-      "password": "1234",
+      "password": "123456",
       "role": "customer"
     },
     {
       "id": 3,
       "name": "Eymen Demir",
       "email": "supplier@mail.com",
-      "password": "1234",
+      "password": "123456",
       "role": "supplier"
     },
     {
       "id": 4,
       "name": "Efe Çelik",
       "email": "customer2@mail.com",
-      "password": "1234",
+      "password": "123456",
       "role": "customer"
     },
     {
       "id": 5,
       "name": "Kaan Arslan",
       "email": "supplier2@mail.com",
-      "password": "1234",
+      "password": "123456",
       "role": "supplier"
     }
   ],
