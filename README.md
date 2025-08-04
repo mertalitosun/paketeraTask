@@ -28,7 +28,7 @@ Uygulama, React frontend ve Node.js backend’den oluşmakta, JWT tabanlı kimli
 3. .env dosyasını oluşturun ve aşağıdaki gibi ayarlayın:
 
 ```bash
-    PORT=5000
+    PORT=4000
     JWT_SECRET=paketerasecretkey
 ```
 
