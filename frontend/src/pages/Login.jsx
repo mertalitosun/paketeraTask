@@ -12,6 +12,21 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setMessage("Lütfen tüm alanları doldurun.");
+      return;
+    }
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setMessage("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+  
+    if (password.length < 6) {
+      setMessage("Şifre en az 6 karakter olmalı.");
+      return;
+    }
     try {
       const res = await axios.post("http://148.230.107.226:4000/login", { email, password });
       const token = res.data.token;
