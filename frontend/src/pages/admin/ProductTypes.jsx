@@ -13,7 +13,7 @@ function ProductTypes() {
 
   const fetchProductTypes = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/admin/product-types", {
+      const res = await axios.get("/admin/product-types", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ function ProductTypes() {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/admin/product-types",
+        "/admin/product-types",
         { name: newType },
         {
           headers: {

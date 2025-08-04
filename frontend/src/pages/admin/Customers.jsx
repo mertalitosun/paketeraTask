@@ -8,7 +8,7 @@ function Customers() {
     const token = localStorage.getItem("token")
    const getCustomers = async() =>{
     try{
-        const res = await axios("http://localhost:4000/admin/customers",{
+        const res = await axios("/admin/customers",{
             headers:{
                 Authorization: `Bearer ${token}`
             }

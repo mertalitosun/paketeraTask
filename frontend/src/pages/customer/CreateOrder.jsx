@@ -12,7 +12,7 @@ function CreateOrder() {
  
     const fetchProductTypes = async () => {
         try {
-        const res = await axios.get("http://localhost:4000/customer/product-types", {
+        const res = await axios.get("/customer/product-types", {
             headers: { Authorization: `Bearer ${token}` },
         });
         setProductTypes(res.data);
@@ -55,7 +55,7 @@ function CreateOrder() {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/customer/order-requests", {
+      const res = await axios.post("/customer/order-requests", {
         items: selectedItems,
       }, {
         headers: { Authorization: `Bearer ${token}` }
