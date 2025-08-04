@@ -23,10 +23,7 @@ function Login() {
       return;
     }
   
-    if (password.length < 6) {
-      setMessage("Şifre en az 6 karakter olmalı.");
-      return;
-    }
+    
     try {
       const res = await axios.post("http://148.230.107.226:4000/login", { email, password });
       const token = res.data.token;
